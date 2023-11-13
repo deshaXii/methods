@@ -151,6 +151,7 @@ const page = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

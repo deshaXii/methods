@@ -6,7 +6,6 @@ import axios from "../../common/axios";
 import AOS from "aos";
 import { FormattedMessage } from "react-intl";
 
-
 const page = () => {
   useEffect(() => {
     AOS.init({
@@ -105,6 +104,7 @@ const page = () => {
         alt=""
         className="position-fixed resh4   end-0"
       />
+      <Footer />
     </>
   );
 };

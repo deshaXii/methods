@@ -1,6 +1,6 @@
 "use client";
 import React, { Component, useEffect, useState } from "react";
-import FormJoinUs from "../../Components/form-join-us";
+import FormJoinUs from "../../components/form-join-us";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import axios from "../../common/axios";
