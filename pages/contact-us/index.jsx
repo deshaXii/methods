@@ -1,5 +1,5 @@
 "use client";
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 import AOS from "aos";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
@@ -37,8 +37,8 @@ const page = () => {
   };
   useEffect(() => {
     AOS.init({
-      duration: 1000, // تعيين مدة الانتقال (بالمللي ثانية)
-      easing: "ease-in-out", // تعيين التموج (التنوع) للانتقال
+      duration: 1000, 
+      easing: "ease-in-out",
     });
   }, []);
 

@@ -1,15 +1,11 @@
 "use client";
 import React, { Component, useEffect } from "react";
-import Slider from "react-slick";
-import Accordion from "react-bootstrap/Accordion";
 import AOS from "aos";
-
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { FormattedMessage } from "react-intl";
-
-const Navbar = dynamic(() => import("@/Components/navbar"), { ssr: false });
-
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import axios from "../../common/axios";
 const page = () => {
   useEffect(() => {
     AOS.init({
