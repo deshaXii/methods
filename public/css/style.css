@@ -5733,7 +5733,17 @@ section.home.about-us:after {
 }
 
 
+footer .foot a {
+  color: #6e6e6e;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  font-size: 15px;
+}
 
+.icon-shoial-footer-div a {
+  margin-bottom: 17px;
+}
 
 
 
