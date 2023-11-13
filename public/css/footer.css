@@ -1,0 +1,145 @@
+footer {
+    background: url("../img/Group3911.png") no-repeat;
+    background-size: cover;
+}
+
+footer .searchBox {
+    display: flex;
+    /* width: 100%; */
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 8px;
+    background: #fff;
+    position: relative;
+    
+  }
+  
+  footer .searchButton {
+    color: white;
+    /* position: absolute; */
+    /* right: 20px; */
+    width: 88px;
+    height: 40px;
+    background: #151412;
+    margin-right: 1rem;
+    border: 0;
+    display: inline-block;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  }
+
+  
+  footer  .searchButton:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(216, 216, 216, 0.5) 0 10px 20px;
+    transform: translateY(-3px);
+  }
+  footer .searchButton:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+  
+  footer .searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    color: #151412;
+    /* width: 100%; */
+    font-size: 15px;
+    padding: 24px 46px 24px 65px;
+  }
+  footer .searchBox i {
+    background-color: rgba(204, 204, 204, 0.5);
+    width: 40px;
+    padding: 13px 10px 10px 12px;
+    color: #A8BFBB;
+  }
+.searchBox div {
+    position: absolute;
+    left: 10px;
+}
+
+.login h6 {
+color: #151412;
+font-size: 18px;
+padding-bottom: 1.5rem;
+}
+.login p {
+color: #747474;
+padding-top: 1rem;
+font-size: 14px;
+}
+.login h2 {
+    color:#151412 ;
+    font-size: 3rem;
+}
+.login {
+    background: url("../img/Group911.png") no-repeat;
+    background-size: cover;
+    display: flex;
+    gap: 2rem;
+    padding: 50px 60px  ;
+    border: 6px solid #fff;
+}
+footer .container {
+    margin-top: 5rem;
+    padding-top: 5rem;
+
+}
+/* .row>* {
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 0;
+} */
+
+/* .foot:nth-child(1) p {
+width: 90%;
+} */
+
+.footer {
+    padding: 80px 0;
+    flex-wrap: nowrap;
+}
+.footer h5 {
+    color: #151412;
+    padding-bottom: 1rem;
+    font-size: 18px;
+}
+.footer p {
+    color: #6E6E6E;
+    font-size: 15px;
+    padding-top:1.5rem ;
+}
+.map {
+    width: 100%;
+}
+.footer .foot div {
+padding-top: 2rem;
+gap: 2rem;
+}
+.footer .foot div i {
+    color: #6E6E6E;
+    transform: var(--transition);
+}
+.footer .foot div path  {
+    fill: #6E6E6E;
+    /* transform: var(--transition); */
+}
+.footer .foot svg:hover path {
+    fill: #151412 ;
+    }
+
+.footer .foot div i:hover {
+    color: #151412;
+}
+.foot_puiux {
+    gap: 2rem;
+    padding-bottom: 5rem;
+}
+.foot_puiux p {
+color: #6E6E6E;
+}
+.foot_puiux span {
+    color: #151412;
+    font-weight: bold;
+}
