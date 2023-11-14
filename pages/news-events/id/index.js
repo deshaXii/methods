@@ -1,9 +1,9 @@
 "use client";
 import React, { Component, useEffect } from "react";
 import AOS from "aos";
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
-import axios from "../../common/axios";
+import Navbar from "../../../components/navbar";
+import Footer from "../../../components/footer";
+import axios from "../../../common/axios";
 import { FormattedMessage } from "react-intl";
 
 const page = ({ data }) => {
@@ -54,10 +54,10 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({query}) {
   try {
     const newsEventsSectionOne = await axios.get(
-      "/core/page/news-events-section-one"
+      "/core/news/show/1"
     );
 
     return {

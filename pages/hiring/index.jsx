@@ -67,14 +67,13 @@ const page = ({ data }) => {
             </div>
             <div className="col-sm-12 col-md-6 join_right p-4">
               <h6 data-aos="fade-up" data-aos-delay="0" className="font-reto">
-                INQUIRIES
+                <FormattedMessage id="inquiries" />
               </h6>
               <h2 data-aos="fade-up" data-aos-delay="100">
-                For Any Inquiries...
+                <FormattedMessage id="for-all-inquiries" />
               </h2>
               <p data-aos="fade-up" data-aos-delay="200">
-                Contact us by visiting the company's headquarters or through the
-                official e-mail of the brand (Ango)
+                <FormattedMessage id="inquiries-description" />
               </p>
               <div className="d-flex  align-items-center icon_social pt-3">
                 {settings?.instagram && (

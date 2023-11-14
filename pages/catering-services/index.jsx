@@ -10,6 +10,8 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import axios from "../../common/axios";
 import { FormattedMessage } from "react-intl";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const page = ({ data }) => {
   let { cateringServices } = data;
@@ -35,10 +37,30 @@ const page = ({ data }) => {
         }
       )
       .then((res) => {
-        console.log(res);
+        if (res.data?.status) {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          setCompanyName("");
+          setName("");
+          setEmail("");
+          setPhone("");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       });
   };
   useEffect(() => {
@@ -96,7 +118,9 @@ const page = ({ data }) => {
       </section>
       <div className="container ">
         <section className="car6">
-          <h2 className="pb-5">Latest photos</h2>
+          <h2 className="pb-5">
+            <FormattedMessage id="latest-photos" />
+          </h2>
           <Slider {...settings}>
             {cateringServices.map((item) => (
               <div key={item.id}>
@@ -111,7 +135,7 @@ const page = ({ data }) => {
         <section className="about about_2  row align-items-center ">
           <div className="col-sm-12 col-md-6 ">
             <h2 data-aos="fade-right">
-              <FormattedMessage id="fill-in-the-data-below" />{" "}
+              <FormattedMessage id="fill-in-the-data-below" />
             </h2>
             <p className="mb-4" data-aos="fade-right">
               <FormattedMessage id="please-fill-in-the-data-below-and-we-will-send-you" />
@@ -302,7 +326,7 @@ const page = ({ data }) => {
                   data-aos-delay="500"
                   type="submit"
                 >
-                  Send
+                  <FormattedMessage id="send" />
                 </button>
               </div>
             </form>

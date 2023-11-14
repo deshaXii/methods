@@ -186,7 +186,7 @@ const navbar = (props) => {
           </div>
           <div className="y">
             <div variant="primary" onClick={handleShow}>
-              <img src="./img/Group -4.png" alt="" loading="lazy" />
+              <img src="/img/Group -4.png" alt="" loading="lazy" />
             </div>
             <div className="search-navbar " onClick={() => setModalShow(true)}>
               <i className="fa-solid fa-magnifying-glass fa-lg"></i>
@@ -194,7 +194,7 @@ const navbar = (props) => {
           </div>
           <ul className="dropdownmenu lap_nav lap_nav">
             <li>
-              <img src="./img/Group -4.png" alt="" loading="lazy" />
+              <img src="/img/Group -4.png" alt="" loading="lazy" />
               <div className="bord"></div>
               <ul className="submenu">
                 <Link href="/hiring">
@@ -224,7 +224,7 @@ const navbar = (props) => {
           <div className="d-flex justify-content-center align-items-center">
             <Link href="/">
               <a>
-                <img src="./img/logoo.png" alt="" loading="lazy" />
+                <img src="/img/logoo.png" alt="" loading="lazy" />
               </a>
             </Link>
             <h6 className="">

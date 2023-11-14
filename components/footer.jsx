@@ -2,6 +2,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import axios from "../common/axios";
 import { FormattedMessage } from "react-intl";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const footer = () => {
   let [email, setEmail] = useState("");
@@ -21,10 +23,26 @@ const footer = () => {
       )
       .then((res) => {
         setEmail("");
-        console.log(res);
+        if (res.data?.status) {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       });
   };
   const emailPlaceholder = <FormattedMessage id="email" />;
@@ -280,8 +298,10 @@ const footer = () => {
             <p>
               <FormattedMessage id="copyright" /> <span>methods</span> - 2023.
             </p>
-            <Link href="https://puiux.com/" target="_blank">
-              <img src="./img/puiux.png" alt="" loading="lazy" />
+            <Link href="https://puiux.com/">
+              <a target="_blank">
+                <img src="./img/puiux.png" alt="" loading="lazy" />
+              </a>
             </Link>
           </div>
         </div>

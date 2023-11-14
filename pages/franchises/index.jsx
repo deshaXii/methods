@@ -2,7 +2,6 @@
 import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
 import Accordion from "react-bootstrap/Accordion";
-import img from "../../public/img/2021-01-21 (1).png";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import axios from "../../common/axios";
@@ -16,6 +15,7 @@ const page = ({ data }) => {
   let [phone, setPhone] = useState("");
   let [address, setAddress] = useState("");
   let [country, setCountry] = useState("");
+
   const SendFranchiseRequest = async (e) => {
     e.preventDefault();
     await axios
@@ -39,14 +39,17 @@ const page = ({ data }) => {
         console.log(err);
       });
   };
+
   let {
     franchisesOverview,
+    faqs,
     franchisesApplyContent,
     settings,
     franchisesModels,
   } = data;
 
   useEffect(() => {
+    console.log(faqs);
     Aos.init({
       duration: 1000,
       easing: "ease-in-out",
@@ -132,55 +135,25 @@ const page = ({ data }) => {
               data-aos-delay="0"
               className="font-reto color-p-FAQ"
             >
-              APPLY FOR FRANCHISE
+              <FormattedMessage id="apply-for" />
             </p>
             <h2 data-aos="fade-right" data-aos-delay="100">
-              FAQ(Frequent Asked Questions)
+              FAQ(<FormattedMessage id="faq" />)
             </h2>
             <p data-aos="fade-right" data-aos-delay="200">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown .
+              ever since the 1500s, when an unknown.
             </p>
           </div>
           <div className="col-md-6 col-sm-12 d-flex justify-content-end align-items-center accordion_div_right">
             <Accordion defaultActiveKey={["0"]} alwaysOpen>
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>What is method?</Accordion.Header>
-                <Accordion.Body>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </Accordion.Body>
-              </Accordion.Item>
-              <Accordion.Item eventKey="1">
-                <Accordion.Header>What is method?</Accordion.Header>
-                <Accordion.Body>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </Accordion.Body>
-              </Accordion.Item>
-              <Accordion.Item eventKey="2">
-                <Accordion.Header>What is method?</Accordion.Header>
-                <Accordion.Body>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </Accordion.Body>
-              </Accordion.Item>
-              <Accordion.Item eventKey="3">
-                <Accordion.Header>What is method?</Accordion.Header>
-                <Accordion.Body>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </Accordion.Body>
-              </Accordion.Item>
+              {faqs.map((item, index) => (
+                <Accordion.Item eventKey={index} key={item.id}>
+                  <Accordion.Header>{item.question}</Accordion.Header>
+                  <Accordion.Body>{item.answer}</Accordion.Body>
+                </Accordion.Item>
+              ))}
             </Accordion>
           </div>
         </section>
@@ -377,12 +350,13 @@ const page = ({ data }) => {
           </div>
           <div className="col-sm-12 col-md-6 join_right p-4">
             <h6 data-aos-delay="0" className="font-reto">
-              INQUIRIES
+              <FormattedMessage id="inquiries" />
             </h6>
-            <h2 data-aos-delay="100">For Any Inquiries...</h2>
+            <h2 data-aos-delay="100">
+              <FormattedMessage id="for-all-inquiries" />
+            </h2>
             <p data-aos-delay="200">
-              Contact us by visiting the company's headquarters or through the
-              official e-mail of the brand (Ango)
+              <FormattedMessage id="inquiries-description" />
             </p>
             <div className="d-flex  align-items-center icon_social pt-3">
               {settings?.instagram && (
@@ -447,6 +421,7 @@ export async function getServerSideProps() {
       "/core/page/franchises-overview"
     );
     const franchisesModels = await axios.get("/core/franchise-models");
+    const faqs = await axios.get("/core/faqs");
     const franchisesApplyContent = await axios.get(
       "/core/page/franchises-apply-content"
     );
@@ -456,6 +431,7 @@ export async function getServerSideProps() {
         data: {
           franchisesOverview: franchisesOverview?.data?.data?.html,
           franchisesApplyContent: franchisesApplyContent?.data?.data?.html,
+          faqs: faqs?.data?.data,
           franchisesModels: franchisesModels?.data?.data,
           settings: settings?.data?.data,
         },

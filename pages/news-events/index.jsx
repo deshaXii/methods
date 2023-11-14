@@ -8,7 +8,14 @@ import Link from "next/link";
 import { FormattedMessage } from "react-intl";
 
 const page = ({ data }) => {
-  let { newsEventsOne, newsEventsTwo, newsEventsThree } = data;
+  let { newsEventsOne, newsEventsTwo, newsEventsThree, categories } = data;
+  let posts = [];
+  categories.map((cat) => {
+    console.log(cat);
+    cat.posts.map((item) => {
+      return posts.push(item);
+    });
+  });
   useEffect(() => {
     // AOS.init({
     //   duration: 1000, // تعيين مدة الانتقال (بالمللي ثانية)
@@ -52,281 +59,92 @@ const page = ({ data }) => {
 
         <section className="car6 car8 mt-5">
           <h6 className=" pt-5 font-reto" data-aos="fade-right">
-            CATERING SERVICES PARTICIPATIONS{" "}
+            {categories[0].name}
           </h6>
           <div className="d-flex justify-content-between align-items-center pb-4">
-            <h2 data-aos="fade-right">Catering Services Participations </h2>
+            <h2 data-aos="fade-right">{categories[0].name} </h2>
           </div>
           <div className="events-grid">
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (5).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (5).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (5).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
+            {categories[0].posts.map((item) => (
+              <Link href={`/news-events/${item.id}`} key={item.id}>
+                <a>
+                  <section
+                    data-aos="fade-up"
+                    data-aos-delay="0"
+                    className="hover01"
+                  >
+                    <figure>
+                      <img src={item.image} alt="" loading="lazy" />
+                    </figure>
+                    <h6>{item.title}</h6>
+                    <p>{item.meta_description}</p>
+                  </section>
+                </a>
+              </Link>
+            ))}
           </div>
         </section>
         <div dangerouslySetInnerHTML={{ __html: newsEventsTwo }}></div>
 
-        <section className="car6 car8">
-          <h6 data-aos="fade-right" className="font-reto">
-            SPECIAL DAYS
-          </h6>
-          <div className="d-flex justify-content-between align-items-center pb-4">
-            <h2 data-aos="fade-right">Special Days .</h2>
-          </div>
-          <div className="events-grid">
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (3).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (3).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (3).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-          </div>
-        </section>
+        {categories[1] && (
+          <section className="car6 car8">
+            <h6 data-aos="fade-right" className="font-reto">
+              {categories[1].name}
+            </h6>
+            <div className="d-flex justify-content-between align-items-center pb-4">
+              <h2 data-aos="fade-right">{categories[1].name}</h2>
+            </div>
+            <div className="events-grid">
+              {categories[1].posts.map((item) => (
+                <Link href={`/news-events/${item.id}`} key={item.id}>
+                  <a>
+                    <section
+                      data-aos="fade-up"
+                      data-aos-delay="0"
+                      className="hover01"
+                    >
+                      <figure>
+                        <img src={item.image} alt="" loading="lazy" />
+                      </figure>
+                      <h6>{item.title}</h6>
+                      <p>{item.meta_description}</p>
+                    </section>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div dangerouslySetInnerHTML={{ __html: newsEventsThree }}></div>
 
         <section className="car6 car8 mt-5">
-          <h6 className="pt-5 font-reto" data-aos="fade-right">
-            SOCIOL RESPONSIBILITY{" "}
-          </h6>
-          <div className="d-flex justify-content-between align-items-center pb-4">
-            <h2 data-aos="fade-right">Social Responsibility</h2>
-          </div>
-          <div className="events-grid">
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (7).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (7).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (7).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-          </div>
-        </section>
-
-        {/* <!--  --> */}
-        <section className="car6 car8 mt-5">
-          <h6 className="pt-5 font-reto" data-aos="fade-right">
-            SPONSORSHIPS{" "}
-          </h6>
-          <div className="d-flex justify-content-between align-items-center pb-4">
-            <h2 data-aos="fade-right">Sponsorships</h2>
-          </div>
-          <div className="events-grid">
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (7).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-          </div>
-        </section>
-
-        <section className="car6 car8 mt-5">
           <h6 className=" pt-5 font-reto" data-aos="fade-right">
-            NEWS
+            <FormattedMessage id="news" />
           </h6>
           <div className="d-flex justify-content-between align-items-center pb-4">
-            <h2 data-aos="fade-right">The News </h2>
+            <h2 data-aos="fade-right">
+              <FormattedMessage id="news-events" />
+            </h2>
           </div>
           <div className="events-grid">
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (2).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (2).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
-            <Link href={"/events"}>
-              <section
-                data-aos="fade-up"
-                data-aos-delay="0"
-                className="hover01"
-              >
-                <figure>
-                  <img src="./img/page8 (2).png" alt="" loading="lazy" />
-                </figure>
-                <h6>The Founding Day</h6>
-                <p>
-                  One of the existing branches of the Methods brand with a
-                  distinctive view and a location close to Al Fanateer Beach and
-                  the city center in the commercial area.
-                </p>
-              </section>
-            </Link>
+            {posts.map((item) => (
+              <Link href={`/news-events/${item.id}`} key={item.id}>
+                <a>
+                  <section
+                    data-aos="fade-up"
+                    data-aos-delay="0"
+                    className="hover01"
+                  >
+                    <figure>
+                      <img src={item.image} alt="" loading="lazy" />
+                    </figure>
+                    <h6>{item.title}</h6>
+                    <p>{item.meta_description}</p>
+                  </section>
+                </a>
+              </Link>
+            ))}
           </div>
         </section>
       </div>
@@ -340,6 +158,7 @@ export default page;
 export async function getServerSideProps() {
   try {
     const newsEventsOne = await axios.get("/core/page/news-events-section-one");
+    const categories = await axios.get("/categories");
     const newsEventsTwo = await axios.get("/core/page/news-events-section-two");
     const newsEventsThree = await axios.get(
       "/core/page/news-events-section-three"
@@ -350,6 +169,7 @@ export async function getServerSideProps() {
           newsEventsOne: newsEventsOne?.data?.data?.html,
           newsEventsTwo: newsEventsTwo?.data?.data?.html,
           newsEventsThree: newsEventsThree?.data?.data?.html,
+          categories: categories?.data?.data,
         },
       },
     };

@@ -31,7 +31,7 @@ export default page;
 
 export async function getServerSideProps() {
   try {
-    const about = await axios.get("/core/page/about-us");
+    const about = await axios.get(`/core/page/about-us`);
     const aboutCity = await axios.get("/core/page/about-us-city	");
     const partners = await axios.get("/core/page/home-partners");
     return {

@@ -5745,11 +5745,22 @@ footer .foot a {
   margin-bottom: 17px;
 }
 
+.hover01 figure img {
+  max-height: 300px;
+  height: 300px;
+  object-fit: cover;
+}
 
-
-
-
-
+.accordion {
+  max-width: unset;
+  width: 100%;
+}
+ul.dropdownmenu.lap_nav.lap_nav {
+  cursor: pointer;
+}
+ul.dropdownmenu.lap_nav.lap_nav li {
+  cursor: pointer;
+}
 
 
 
@@ -5765,6 +5776,11 @@ footer .foot a {
 html,
 body {
   overflow-x: hidden;
+}
+
+html[dir=rtl] .searchButton-nav {
+  right: unset;
+  left: 8px;
 }
 
 html[dir=rtl] body,
@@ -5799,15 +5815,13 @@ html[dir=rtl] .home11 ul li::before {
 
 html[dir=rtl] .wave-group .label {
   direction: ltr;
+  left: unset;
+  right: 5px;
 }
 
 html[dir=rtl] .dropdownmenu .submenu {
   right: unset;
   left: 0;
-}
-
-.wave-group .input {
-  direction: ltr;
 }
 
 html[dir=rtl] .dropdownmenu li {

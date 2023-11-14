@@ -16,6 +16,11 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap"
             rel="stylesheet"
           />
+          <script
+            src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyDB8v_JV0dwZbMbUBFSjU8nbtFTYkOccO8"}&libraries=places&callback=Function.prototype`}
+            async
+            defer
+          ></script>
         </Head>
         <body>
           <Main />
