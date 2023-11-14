@@ -22,7 +22,6 @@ const page = ({ data }) => {
       <section className="home">
         <div className="back_home">
           <Navbar />
-
           <div className="position-relative  home_3">
             <div className="logo_home ">
               <div data-aos="fade-down" data-aos-delay="100">
@@ -134,10 +133,12 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ query }) {
   try {
-    const joinUs = await axios.get("/core/page/join-us");
-    const settings = await axios.get("/core/settings");
+    const lang = query.lang || "en";
+    const headers = { "Accept-Language": lang };
+    const joinUs = await axios.get("/core/page/join-us", { headers });
+    const settings = await axios.get("/core/settings", { headers });
     return {
       props: {
         data: {

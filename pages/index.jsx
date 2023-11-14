@@ -106,9 +106,11 @@ const HomePage = ({ data }) => {
 
           <div className="news position-relative">
             <h6 className="text-center our_productsp font-reto">
-                <FormattedMessage id="news-events" />
+              <FormattedMessage id="news-events" />
             </h6>
-            <h2><FormattedMessage id="news-events" /></h2>
+            <h2>
+              <FormattedMessage id="news-events" />
+            </h2>
             <ul className="nav nav-tabs nav__tabs">
               <li className="nav-item">
                 <button
@@ -209,7 +211,7 @@ const HomePage = ({ data }) => {
             <Link href={"/news-events"}>
               <a>
                 <h5 data-aos="zoom-in" className="font-reto">
-                <FormattedMessage id="show-more" />
+                  <FormattedMessage id="show-more" />
                   <i className="fa-solid fa-arrow-right"></i>
                 </h5>
               </a>
@@ -232,18 +234,31 @@ const HomePage = ({ data }) => {
 
 export default HomePage;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   try {
-    const banner = await axios.get("/core/page/home-banner");
-    const about = await axios.get("/core/page/home-about");
-    const timeLine = await axios.get("/core/page/home-time-line");
-    const statistics = await axios.get("/core/page/home-statistics");
-    const productsInfo = await axios.get("/core/page/home-our-products");
-    const dynamicProducts = await axios.get("/products?per_page=10");
-    const newsVideo = await axios.get("/news?type=video&per_page=10");
-    const newsPhoto = await axios.get("/news?type=photo&per_page=10");
-    const services = await axios.get("/core/page/home-our-services");
-    const partners = await axios.get("/core/page/home-partners");
+    const headers = { "Accept-Language": locale };
+    const banner = await axios.get("/core/page/home-banner", { headers });
+    const about = await axios.get("/core/page/home-about", { headers });
+    const timeLine = await axios.get("/core/page/home-time-line", { headers });
+    const statistics = await axios.get("/core/page/home-statistics", {
+      headers,
+    });
+    const productsInfo = await axios.get("/core/page/home-our-products", {
+      headers,
+    });
+    const dynamicProducts = await axios.get("/products?per_page=10", {
+      headers,
+    });
+    const newsVideo = await axios.get("/news?type=video&per_page=10", {
+      headers,
+    });
+    const newsPhoto = await axios.get("/news?type=photo&per_page=10", {
+      headers,
+    });
+    const services = await axios.get("/core/page/home-our-services", {
+      headers,
+    });
+    const partners = await axios.get("/core/page/home-partners", { headers });
     return {
       props: {
         data: {

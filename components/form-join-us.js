@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import axios from "../common/axios";
+import { FormattedMessage } from "react-intl";
 
 const FormJoinUs = () => {
   let [email, setEmail] = useState("");
@@ -212,7 +213,7 @@ const FormJoinUs = () => {
           <div className="drop-zone pt-4 pb-2">
             <img src="./img/cv.png" alt="" />
             <div className="d-flex pt-4 justify-content-around align-items-center w-100">
-              <span className="drop-zone__prompt">UPLOAD YOUR CV HERE</span>
+              <span className="drop-zone__prompt"><FormattedMessage id="upload-your-cv-here" /></span>
               <i className="fa-solid fa-arrow-up-from-bracket"></i>
             </div>
             <input
