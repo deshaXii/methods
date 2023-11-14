@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const BranchMap = ({ branchLocations }) => {
   const [currentBranchIndex, setCurrentBranchIndex] = useState(0);
-
+  console.log(branchLocations);
   useEffect(() => {
     initializeMap();
   }, [currentBranchIndex]);
@@ -41,30 +41,16 @@ const BranchMap = ({ branchLocations }) => {
                   <li key={index} onClick={() => changeBranch(index)}>
                     <div className="store-store-location">
                       <div>
-                        <strong>
-                            Kingdom Tower Branch - Riyadh
-                        </strong>
-                        <p className="store-street">
-                          King Abdullah Rd, King Fahd
-                        </p>
-
-                        <p>Riyadh 12271</p>
-                        <p className="store-country">Saudi Arabia</p>
+                        <strong>{branch.title}</strong>
+                        <p className="store-country">{branch.address}</p>
                       </div>
-                    </div>
-                    <div className="store-direction-wrap">
-                      0.2 km
-                      <a className="store-directions" target="_blank" href="#">
-                        location
-                        <i className="fa-solid fa-map-location"></i>
-                      </a>
                     </div>
                     <a
                       className="store-directions pt-0"
                       target="_blank"
                       href="#"
                     >
-                      8 AM - 5 PM
+                      {branch.start_time} - {branch.end_time}
                       <i className="fa-solid fa-clock"></i>
                     </a>
                   </li>

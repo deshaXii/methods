@@ -54,8 +54,7 @@ const page = ({ data }) => {
       <div className="background-map">
         <div className="findstore-text text-center">
           <p className="font-reto">
-            {" "}
-            <FormattedMessage id="story-behind" />{" "}
+            <FormattedMessage id="story-behind" />
           </p>
           <h2>
             <FormattedMessage id="brand-success" />

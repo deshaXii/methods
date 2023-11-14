@@ -5755,9 +5755,11 @@ footer .foot a {
   max-width: unset;
   width: 100%;
 }
+
 ul.dropdownmenu.lap_nav.lap_nav {
   cursor: pointer;
 }
+
 ul.dropdownmenu.lap_nav.lap_nav li {
   cursor: pointer;
 }
@@ -5801,6 +5803,10 @@ html[dir=rtl] div {
 
 html[dir=rtl] .searchBox {
   direction: ltr;
+}
+
+html[dir=rtl] i.fa-solid.fa-arrow-right {
+  transform: rotate(180deg);
 }
 
 html[dir=rtl] .home11 ul li {

@@ -6,6 +6,7 @@ import AOS from "aos";
 import Default from "../layouts/default";
 import Navbar from "../components/navbar";
 import axios from "../common/axios";
+import { FormattedMessage } from "react-intl";
 
 const HomePage = ({ data }) => {
   const [activeTab, setActiveTab] = useState("photo");
@@ -105,9 +106,9 @@ const HomePage = ({ data }) => {
 
           <div className="news position-relative">
             <h6 className="text-center our_productsp font-reto">
-              NEWS AND EVENTS
+                <FormattedMessage id="news-events" />
             </h6>
-            <h2>News & Events</h2>
+            <h2><FormattedMessage id="news-events" /></h2>
             <ul className="nav nav-tabs nav__tabs">
               <li className="nav-item">
                 <button
@@ -117,7 +118,7 @@ const HomePage = ({ data }) => {
                   }`}
                   type="button"
                 >
-                  Photo
+                  <FormattedMessage id="photo" />
                 </button>
               </li>
               <li className="nav-item">
@@ -128,7 +129,7 @@ const HomePage = ({ data }) => {
                   }`}
                   type="button"
                 >
-                  Video
+                  <FormattedMessage id="video" />
                 </button>
               </li>
             </ul>
@@ -208,7 +209,7 @@ const HomePage = ({ data }) => {
             <Link href={"/news-events"}>
               <a>
                 <h5 data-aos="zoom-in" className="font-reto">
-                  READ More
+                <FormattedMessage id="show-more" />
                   <i className="fa-solid fa-arrow-right"></i>
                 </h5>
               </a>
