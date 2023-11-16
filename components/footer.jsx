@@ -57,6 +57,7 @@ const footer = () => {
       }
     );
     const { data } = settingsData;
+    console.log(data);
     setSettings(data.data);
   };
   useEffect(async () => {
@@ -111,9 +112,9 @@ const footer = () => {
               >
                 <img src="./img/logoo.png" alt="" loading="lazy" />
                 <p>
-                  Michods Café For Specialty Coffee Was Opened In 2018 In Jubail
-                  Industrial City, And It Is Considered One Of The Unique Brands
-                  In Its Field.
+                  {locale === "ar"
+                    ? settings.footer_description_ar
+                    : settings.footer_description_en}
                 </p>
                 <div className="d-flex  align-items-center">
                   {settings.instagram && (
