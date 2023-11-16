@@ -12,9 +12,12 @@ import axios from "../../common/axios";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 const page = ({ data }) => {
   let { cateringServices } = data;
+  const { locale } = useRouter();
+  const headers = { "Accept-Language": locale };
   let [email, setEmail] = useState("");
   let [name, setName] = useState("");
   let [phone, setPhone] = useState("");
@@ -31,9 +34,7 @@ const page = ({ data }) => {
           company_name: companyName,
         },
         {
-          headers: {
-            "Accept-Language": "ar",
-          },
+          headers,
         }
       )
       .then((res) => {
@@ -349,9 +350,12 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   try {
-    const cateringServices = await axios.get("/core/catering-services");
+    const headers = { "Accept-Language": locale };
+    const cateringServices = await axios.get("/core/catering-services", {
+      headers,
+    });
     return {
       props: {
         data: {

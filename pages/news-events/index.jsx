@@ -39,7 +39,7 @@ const page = ({ data }) => {
                 data-aos-delay="100"
               >
                 <FormattedMessage id="perfecting-your-way" />
-              </h2>{" "}
+              </h2>
             </div>
             <div className="h__img">
               <img
@@ -66,7 +66,7 @@ const page = ({ data }) => {
           </div>
           <div className="events-grid">
             {categories[0].posts.map((item) => (
-              <Link href={`/news-events/${item.id}`} key={item.id}>
+              <Link href={`/news-events/${item.slug}`} key={item.id}>
                 <a>
                   <section
                     data-aos="fade-up"
@@ -96,7 +96,7 @@ const page = ({ data }) => {
             </div>
             <div className="events-grid">
               {categories[1].posts.map((item) => (
-                <Link href={`/news-events/${item.id}`} key={item.id}>
+                <Link href={`/news-events/${item.slug}`} key={item.id}>
                   <a>
                     <section
                       data-aos="fade-up"
@@ -129,7 +129,7 @@ const page = ({ data }) => {
           </div>
           <div className="events-grid">
             {posts.map((item) => (
-              <Link href={`/news-events/${item.id}`} key={item.id}>
+              <Link href={`/news-events/${item.slug}`} key={item.id}>
                 <a>
                   <section
                     data-aos="fade-up"
@@ -155,13 +155,14 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({locale}) {
   try {
-    const newsEventsOne = await axios.get("/core/page/news-events-section-one");
-    const categories = await axios.get("/categories");
-    const newsEventsTwo = await axios.get("/core/page/news-events-section-two");
+    const headers = { "Accept-Language": locale };
+    const newsEventsOne = await axios.get("/core/page/news-events-section-one", { headers });
+    const categories = await axios.get("/categories", { headers });
+    const newsEventsTwo = await axios.get("/core/page/news-events-section-two", { headers });
     const newsEventsThree = await axios.get(
-      "/core/page/news-events-section-three"
+      "/core/page/news-events-section-three", { headers }
     );
     return {
       props: {

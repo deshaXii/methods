@@ -50,9 +50,10 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({locale}) {
   try {
-    const terms = await axios.get("/core/page/terms-and-conditions");
+    const headers = { "Accept-Language": locale };
+    const terms = await axios.get("/core/page/terms-and-conditions", { headers });
 
     return {
       props: {

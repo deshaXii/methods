@@ -5834,6 +5834,11 @@ html[dir=rtl] .dropdownmenu li {
   text-align: right;
 }
 
+html[dir=rtl] .half_ser .how-to-use-contain:after {
+  right: unset;
+  left: calc(-100% + 150px);
+}
+
 @media (max-width: 768px) {
   .car8 section {
     padding: 20px;

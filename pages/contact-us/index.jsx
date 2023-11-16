@@ -6,6 +6,7 @@ import axios from "../../common/axios";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 const page = () => {
   let [email, setEmail] = useState("");
@@ -14,9 +15,10 @@ const page = () => {
   let [companyName, setCompanyName] = useState("");
   let [address, setAddress] = useState("");
   let [message, setMessage] = useState("");
+  const { locale } = useRouter();
   let [country, setCountry] = useState("");
   let [subject, setSubject] = useState("");
-
+  const headers = { "Accept-Language": locale };
   const sendContactRequest = async (e) => {
     e.preventDefault();
     await axios
@@ -32,9 +34,7 @@ const page = () => {
           company_name: companyName,
         },
         {
-          headers: {
-            "Accept-Language": "ar",
-          },
+          headers,
         }
       )
       .then((res) => {

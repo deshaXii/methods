@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
   const { locale, defaultLocale } = useRouter();
   useEffect(() => {
     let html = document.querySelector("html");
-    html.setAttribute("dir", locale === 'ar' ? 'rtl' : 'ltr');
+    html.setAttribute("dir", locale === "ar" ? "rtl" : "ltr");
     Aos.init({
       duration: 1000,
       easing: "ease-in-out",
@@ -45,7 +45,14 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <meta name="description" content={locale === "en" ? "" : ""} />
+        <title>Methods</title>
+        <meta
+          name="description"
+          content="Michods Café For Specialty Coffee Was Opened In 2018 In Jubail 
+  Industrial City, And It Is Considered One Of The Unique Brands 
+  In Its Field, As It Always Aims To Advance In The World Of Coffee, 
+  From The Kingdom Of Saudi Arabia To The Global Markets."
+        />
       </Head>
       <IntlProvider
         locale={locale}

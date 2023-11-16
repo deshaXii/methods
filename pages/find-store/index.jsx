@@ -73,9 +73,10 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({locale}) {
   try {
-    const branches = await axios.get("/core/branches");
+    const headers = { "Accept-Language": locale };
+    const branches = await axios.get("/core/branches", { headers });
     return {
       props: {
         data: {

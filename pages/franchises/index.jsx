@@ -138,7 +138,8 @@ const page = ({ data }) => {
               <FormattedMessage id="apply-for" />
             </p>
             <h2 data-aos="fade-right" data-aos-delay="100">
-              FAQ(<FormattedMessage id="faq" />)
+              FAQ(
+              <FormattedMessage id="faq" />)
             </h2>
             <p data-aos="fade-right" data-aos-delay="200">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -415,17 +416,22 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   try {
+    const headers = { "Accept-Language": locale };
     const franchisesOverview = await axios.get(
-      "/core/page/franchises-overview"
+      "/core/page/franchises-overview",
+      { headers }
     );
-    const franchisesModels = await axios.get("/core/franchise-models");
-    const faqs = await axios.get("/core/faqs");
+    const franchisesModels = await axios.get("/core/franchise-models", {
+      headers,
+    });
+    const faqs = await axios.get("/core/faqs", { headers });
     const franchisesApplyContent = await axios.get(
-      "/core/page/franchises-apply-content"
+      "/core/page/franchises-apply-content",
+      { headers }
     );
-    const settings = await axios.get("/core/settings");
+    const settings = await axios.get("/core/settings", { headers });
     return {
       props: {
         data: {

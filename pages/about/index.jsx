@@ -29,11 +29,12 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   try {
-    const about = await axios.get(`/core/page/about-us`);
-    const aboutCity = await axios.get("/core/page/about-us-city	");
-    const partners = await axios.get("/core/page/home-partners");
+    const headers = { "Accept-Language": locale };
+    const about = await axios.get(`/core/page/about-us`, { headers });
+    const aboutCity = await axios.get("/core/page/about-us-city	", { headers });
+    const partners = await axios.get("/core/page/home-partners", { headers });
     return {
       props: {
         data: {

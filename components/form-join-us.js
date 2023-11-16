@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import axios from "../common/axios";
 import { FormattedMessage } from "react-intl";
+import { useRouter } from "next/router";
 
 const FormJoinUs = () => {
   let [email, setEmail] = useState("");
@@ -9,7 +10,9 @@ const FormJoinUs = () => {
   let [phone, setPhone] = useState("");
   let [address, setAddress] = useState("");
   let [country, setCountry] = useState("");
+  const { locale } = useRouter();
   let [cv, setCv] = useState("");
+  const headers = { "Accept-Language": locale };
   const SendJobRequest = async (e) => {
     e.preventDefault();
     await axios
@@ -19,18 +22,39 @@ const FormJoinUs = () => {
           email,
           name,
           phone,
+          cv,
           address,
           country,
         },
         {
-          headers: {
-            "Accept-Language": "ar",
-          },
+          headers,
         }
       )
-      .then((res) => {})
+      .then((res) => {
+        if (res.data?.status) {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          setCompanyName("");
+          setName("");
+          setEmail("");
+          setPhone("");
+        }
+      })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       });
   };
   useEffect(() => {
@@ -213,7 +237,9 @@ const FormJoinUs = () => {
           <div className="drop-zone pt-4 pb-2">
             <img src="./img/cv.png" alt="" />
             <div className="d-flex pt-4 justify-content-around align-items-center w-100">
-              <span className="drop-zone__prompt"><FormattedMessage id="upload-your-cv-here" /></span>
+              <span className="drop-zone__prompt">
+                <FormattedMessage id="upload-your-cv-here" />
+              </span>
               <i className="fa-solid fa-arrow-up-from-bracket"></i>
             </div>
             <input

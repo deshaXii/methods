@@ -111,10 +111,11 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({locale}) {
   try {
-    const productsInfo = await axios.get("/core/page/home-our-products");
-    const dynamicProducts = await axios.get("/products?per_page=10");
+    const headers = { "Accept-Language": locale };
+    const productsInfo = await axios.get("/core/page/home-our-products", { headers });
+    const dynamicProducts = await axios.get("/products", { headers });
     return {
       props: {
         data: {

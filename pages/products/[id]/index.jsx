@@ -24,7 +24,7 @@ const page = ({ data }) => {
           <div className="position-relative  home_3">
             <div className="logo_home ">
               <div data-aos="fade-down" data-aos-delay="100">
-                <img src="../img/Group 5733.png" alt="" loading="lazy" />
+                <img src="../../img/Group 5733.png" alt="" loading="lazy" />
               </div>
               <h2
                 className="d-flex align-items-center writeit justify-content-center mt-2"
@@ -35,7 +35,7 @@ const page = ({ data }) => {
             </div>
             <div className="h__img">
               <img
-                src="../img/DSC-2.png"
+                src="../../img/DSC-2.png"
                 alt=""
                 className="w-100 home_img"
                 loading="lazy"
@@ -97,9 +97,10 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, locale }) {
   try {
-    const productDetails = await axios.get(`/products/show/${query.id}`);
+    const headers = { "Accept-Language": locale };
+    const productDetails = await axios.get(`/products/show/${query.id}`, { headers });
     return {
       props: {
         data: {

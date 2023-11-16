@@ -55,9 +55,10 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({locale}) {
   try {
-    const loyaltyPoint = await axios.get("/core/page/loyalty-point");
+    const headers = { "Accept-Language": locale };
+    const loyaltyPoint = await axios.get("/core/page/loyalty-point", { headers });
     return {
       props: {
         data: {

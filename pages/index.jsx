@@ -134,6 +134,16 @@ const HomePage = ({ data }) => {
                   <FormattedMessage id="video" />
                 </button>
               </li>
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="container">
+                      <img src="./img/home/intro.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div className="col-md-6"></div>
+                </div>
+              </div>
             </ul>
             {activeTab === "photo" && (
               <div className={`tab-content`}>
@@ -157,7 +167,7 @@ const HomePage = ({ data }) => {
                         index === 0 ? 100 : index === 1 ? 200 : ""
                       }
                     >
-                      <Link href={`/news-events/${item.id}`}>
+                      <Link href={`/news-events/${item.slug}`}>
                         <figure>
                           <img
                             src="./img/waffles-with-chocolate-sauce-wooden-plate.png"

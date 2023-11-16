@@ -10,7 +10,6 @@ import { FormattedMessage } from "react-intl";
 
 const page = ({ data }) => {
   let { joinUs, settings } = data;
-  console.log(settings);
   useEffect(() => {
     AOS.init({
       duration: 1000, // تعيين مدة الانتقال (بالمللي ثانية)
@@ -133,10 +132,9 @@ const page = ({ data }) => {
 
 export default page;
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query,locale }) {
   try {
-    const lang = query.lang || "en";
-    const headers = { "Accept-Language": lang };
+    const headers = { "Accept-Language": locale };
     const joinUs = await axios.get("/core/page/join-us", { headers });
     const settings = await axios.get("/core/settings", { headers });
     return {
